@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vatican News - Prece Sagrada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #dc0000;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .header img {
+            height: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .title-section {
+            padding: 20px 0;
+            text-align: left;
+        }
+
+        .title-section h1 {
+            font-size: 24px;
+            line-height: 1.4;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+
+        .title-section h1 .highlight {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #dc0000;
+            border-radius: 50%;
+        }
+
+        .live-badge .viewers {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .comments-section {
+            margin-top: 30px;
+        }
+
+        .comments-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .comment {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .comment-author {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1a1a1a;
+        }
+
+        .comment-time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .comment-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .cta-container {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        .cta-container.show {
+            display: block;
+        }
+
+        .cta-container h2 {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cta-container p {
+            color: #f0f0f0;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #00c851;
+            color: white;
+            font-size: 28px;
+            font-weight: 900;
+            padding: 25px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 15px 40px rgba(0, 200, 81, 0.5);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .cta-button:hover {
+            background-color: #00e65b;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 200, 81, 0.6);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .cta-button {
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 15px;
+            }
+
+            .title-section h1 {
+                font-size: 20px;
+            }
+
+            .cta-container h2 {
+                font-size: 22px;
+            }
+
+            .cta-button {
+                font-size: 20px;
+                padding: 20px 30px;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://i.imgur.com/UwN2Md1.png" alt="Vatican News">
+    </div>
+
+    <div class="container">
+        <div class="title-section">
+            <h1>Se você está <span class="highlight">vendo isso agora</span>, <span class="highlight">não é por acaso.</span> Deus quer <span class="highlight">te dizer algo</span>.</h1>
+        </div>
+
+        <!-- CTA Button 1 - Entre headline e vídeo -->
+        <div class="cta-container" id="cta-container-top">
+            <h2>🙏 Garanta Sua Bênção Agora!</h2>
+            <p>Milhares de pessoas já foram transformadas por esta poderosa oração.<br>Não perca esta oportunidade de mudar sua vida!</p>
+            <a href="#" class="cta-button cta-button-top">SIM, QUERO A ORAÇÃO SAGRADA!</a>
+        </div>
+
+        <div class="video-container">
+            <script type="text/javascript">
+                var s=document.createElement("script");
+                s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js",
+                s.async=!0,document.head.appendChild(s);
+            </script>
+            <div id="ifr_691aa5a7ab454535ff35cefd_wrapper" style="margin: 0 auto; width: 100%;">
+                <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_691aa5a7ab454535ff35cefd_aspect">
+                    <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_691aa5a7ab454535ff35cefd" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload="this.onload=null, this.src='https://scripts.converteai.net/20bcfbf9-d8d4-4494-b479-cab078016b83/players/691aa5a7ab454535ff35cefd/v4/embed.html'+(location.search||'?')+'&vl='+encodeURIComponent(location.href)"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button 2 - Entre vídeo e live badge -->
+        <div class="cta-container" id="cta-container-middle">
+            <h2>🙏 Garanta Sua Bênção Agora!</h2>
+            <p>Milhares de pessoas já foram transformadas por esta poderosa oração.<br>Não perca esta oportunidade de mudar sua vida!</p>
+            <a href="#" class="cta-button cta-button-middle">SIM, QUERO A ORAÇÃO SAGRADA!</a>
+        </div>
+
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            <span>AO VIVO</span>
+            <span class="viewers">👁 <span id="viewer-count">300</span> assistindo</span>
+        </div>
+
+        <div class="comments-section">
+            <h2>Comentários</h2>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/B7qs5oZ.jpeg');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">Frei Gilson/Som Do Monte</span>
+                        <span class="comment-time">27 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Essa oração de São Arcanjo Rafael tem raízes profundas na tradição cristã. É uma bênção ver tantas pessoas sendo tocadas por sua força espiritual. Que ela continue sendo luz para muitos.
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/0MOW2FX.jpeg');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">Maria Lúcia Batista</span>
+                        <span class="comment-time">17 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Amém, Frei Gilson! Suas palavras tocam o coração. Desde que comecei a rezar essa oração, senti uma paz que não sentia há anos... Que mais pessoas sejam alcançadas por essa luz divina!
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/Uq4RaSr.jpeg');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">Padre Paulo Ricardo</span>
+                        <span class="comment-time">35 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Tive a graça de conhecer essa oração durante minha missão em Roma, e posso afirmar: há um mover divino acontecendo aqui. Que mais corações se abram para esse momento de fé!
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/kbPeffp.jpeg');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">Padre Chrystian Shankar</span>
+                        <span class="comment-time">46 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Recomendo fortemente esta oração. Conheço seu poder e sei que, feita com fé, ela rompe correntes e traz bênçãos reais.
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/yd9QWs1.jpeg');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">Juliana Ferreira</span>
+                        <span class="comment-time">41 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Fiz a oração de São Arcanjo Rafael em 1 semana consegui um emprego! Minha ansiedade sumiu. Vida mudada!
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/tX0tqQ8.jpeg');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">João Oliveira</span>
+                        <span class="comment-time">32 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Minha esposa melhorou das dores crônicas seguindo essa oração de São Arcanjo Rafael. Deus é bom!
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/4dfSkdi.jpeg');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">Ricardo Silva</span>
+                        <span class="comment-time">43 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Fiz a oração e no primeiro dia já veio resultado, minha filha dormiu a noite toda depois de anos de insônia. Milagre!
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/5islgzQ.png');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">João Pereira</span>
+                        <span class="comment-time">38 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Era cético, mas em 2 semanas meus problemas começaram a se resolver. Recomendo!
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" style="background-image: url('https://i.imgur.com/k4CFajg.jpeg');"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">Maria De Fátima</span>
+                        <span class="comment-time">28 min</span>
+                    </div>
+                    <div class="comment-text">
+                        Sim. Eu também estava cética, mas depois de ver a recomendação do Frei Gilson, do Padre Paulo e do Padre Chrystian Shankar, fui tocada. Agora vou garantir a minha com fé no coração. Espero também viver os mesmos milagres que tantos já estão testemunhando aqui. Que Deus nos abençoe!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Sistema realista de contagem de espectadores ao vivo
+        let currentViewers = 300;
+        const viewerElement = document.getElementById('viewer-count');
+        
+        // Configuração para 26 minutos (1560 segundos)
+        const totalDuration = 1560000; // 26 minutos em milissegundos
+        const minViewers = 300;
+        const maxViewers = 847; // Cresce até ~847 em 26 minutos
+        
+        function updateViewerCount() {
+            // 70% chance de aumentar, 20% de manter, 10% de diminuir levemente
+            const random = Math.random();
+            
+            if (random < 0.70) {
+                // Aumenta entre 1 a 4 pessoas (maioria das vezes 1-2)
+                const increase = Math.random() < 0.7 ? 
+                    Math.floor(Math.random() * 2) + 1 : // 1-2 pessoas (70%)
+                    Math.floor(Math.random() * 3) + 2;  // 2-4 pessoas (30%)
+                currentViewers += increase;
+            } else if (random < 0.90) {
+                // Mantém o mesmo número (20% das vezes)
+                // Não faz nada
+            } else {
+                // Diminui levemente entre 1 a 2 pessoas (10% das vezes)
+                const decrease = Math.floor(Math.random() * 2) + 1;
+                currentViewers -= decrease;
+            }
+            
+            // Garante que não ultrapassa os limites
+            if (currentViewers > maxViewers) currentViewers = maxViewers;
+            if (currentViewers < minViewers) currentViewers = minViewers;
+            
+            // Atualiza o display com animação suave
+            viewerElement.textContent = currentViewers;
+        }
+        
+        // Atualiza a cada 8-15 segundos (intervalo variável para parecer natural)
+        function scheduleNextUpdate() {
+            const minInterval = 8000;  // 8 segundos
+            const maxInterval = 15000; // 15 segundos
+            const randomInterval = Math.floor(Math.random() * (maxInterval - minInterval + 1)) + minInterval;
+            
+            setTimeout(() => {
+                updateViewerCount();
+                scheduleNextUpdate();
+            }, randomInterval);
+        }
+        
+        // Inicia o contador
+        scheduleNextUpdate();
+        
+        // Pequena variação visual quando a página carrega
+        setTimeout(() => {
+            currentViewers += Math.floor(Math.random() * 3) + 1;
+            viewerElement.textContent = currentViewers;
+        }, 3000);
+
+        // Mostrar AMBOS os CTAs após exatamente 26 minutos (1560 segundos)
+        setTimeout(() => {
+            const ctaContainerTop = document.getElementById('cta-container-top');
+            const ctaContainerMiddle = document.getElementById('cta-container-middle');
+            
+            ctaContainerTop.classList.add('show');
+            ctaContainerMiddle.classList.add('show');
+            
+            // Scroll suave até o botão do meio
+            ctaContainerMiddle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1560000); // 1560 segundos = 26 minutos
+
+        // Links dos botões CTA - COLOQUE SEU LINK AQUI
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                // ALTERE A URL ABAIXO PARA SEU LINK DE CHECKOUT/OFERTA
+                window.location.href = 'https://seu-link-de-checkout-aqui.com';
+            });
+        });
+    </script>
+</body>
+</html>
